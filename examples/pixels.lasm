@@ -1,0 +1,40 @@
+# Compute the area of a circle.
+
+.START __main__
+
+.INIT 0 0 100 100
+
+.DATA
+    counter 100
+
+.CODE
+
+DEF random_0_100:
+  PUSH 100
+  RAND
+  MUL
+  TRUNC
+  RET
+
+DEF __main__:
+:while
+  # while counter > 0
+  LOAD counter
+  CMP 0
+  JZ :after
+  # x = random [0;100)
+  CALL random_0_100
+  # y = random [0;100)
+  CALL random_0_100
+  # draw at (x,y)
+  MVTO
+  SETPX
+  # counter -= 1
+  LOAD counter
+  PUSH 1
+  SUB
+  STOR counter
+  # next iteration
+  JP :while
+:after
+  HALT

@@ -1,0 +1,1 @@
+"""LogoASM module."""
