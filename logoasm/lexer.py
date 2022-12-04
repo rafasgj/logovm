@@ -115,7 +115,7 @@ def t_CODE(t):  # pylint: disable=invalid-name
     return t
 
 
-@TOKEN(r"[_a-zA-Z][_a-zA-Z0-9]*")
+@TOKEN(r"[_@a-zA-Z][_@.a-zA-Z0-9]*")
 def t_ID(t):  # pylint: disable=invalid-name
     """Extract an identifier."""
     logging.log(5, "ID: '%s'", t.value)
@@ -127,7 +127,7 @@ def t_ID(t):  # pylint: disable=invalid-name
     return t
 
 
-@TOKEN(r"[:][_a-zA-Z][_a-zA-Z0-9]*")
+@TOKEN(r"[:][_@a-zA-Z][_@.a-zA-Z0-9]*")
 def t_LABEL(t):  # pylint: disable=invalid-name
     """Extract a label definition."""
     logging.log(5, "LABEL: '%s'", t.value)
@@ -154,7 +154,7 @@ def t_NUMBER(t):  # pylint: disable=invalid-name
     return t
 
 
-@TOKEN(r"\#[^\n]*")
+@TOKEN(r"[#][^\n]*")
 def t_COMMENT(token):  # pylint: disable=invalid-name
     """Ignore comments."""
     logging.log(5, "Comment: '%s'", token.value)
