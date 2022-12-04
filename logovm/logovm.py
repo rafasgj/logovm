@@ -211,6 +211,7 @@ def dup():
 
 def load(var):
     """Implement command LOAD."""
+    logging.debug("LOAD: %s STACK: %s", var, stack_peek())
     variable = get_symbol(var)
     reg[0] = variable["value"]
     stack_push(reg[0])
