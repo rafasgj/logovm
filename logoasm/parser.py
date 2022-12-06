@@ -34,7 +34,7 @@ from logovm.errors import UndefinedReference
 
 
 parser_error = False  # pylint: disable=invalid-name
-
+expected = ".START"
 
 class ParserObject(object):  # pylint: disable=R0205, R0903
     """Provides an object with arbitrary attributes."""
@@ -59,6 +59,8 @@ def p_start(p):  # noqa: D205, D400, D403, D415
     logging.log(5, "START: %s", p[2])
     add_symbol(p[2], "FUNC", usage=1)
     p[0] = p[2]
+    global expected
+    expected = ".INIT"
 
 
 def p_init(p):  # noqa: D205, D400, D403, D415
@@ -87,6 +89,8 @@ def p_init(p):  # noqa: D205, D400, D403, D415
             lineno=p.lineno(2),
             value=ParserObject(w=nums[2], h=nums[3]),
         )
+    global expected
+    expected = ".DATA"
 
 
 def p_data(_p):  # noqa: D205, D400, D403, D415, D401
@@ -94,6 +98,8 @@ def p_data(_p):  # noqa: D205, D400, D403, D415, D401
     data : DATA var_decl data_list
          | empty
     """
+    global expected
+    expected = ".CODE"
 
 
 def p_var_decl(p):  # noqa: D205, D400, D403, D415
@@ -121,6 +127,8 @@ def p_value(p):  # noqa: D205, D400, D403, D415
 
 def p_code(_p):  # noqa: D205, D400, D403, D415
     """code : CODE procedures"""
+    global expected
+    expected = "statement"
 
 
 def p_procedures(_p):  # noqa: D205, D400, D403, D415
@@ -357,6 +365,7 @@ def p_error(p):
     """Provide a simple error message."""
     global parser_error  # pylint: disable=global-statement,invalid-name
     parser_error = True
+    print("Expected: ", expected)
     if p:
         logging.critical("Invalid token:%d: %s:'%s'", p.lineno, p.type, p.value)
     else:
