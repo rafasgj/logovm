@@ -147,7 +147,7 @@ LogoASM disponibiliza as seguintes operações matemáticas:
 | SUB | Retira dois valores da pilha, subtrai e empilha o resultado. Opera apenas em `NUMBER`.| ...\<lhs> \<rhs> | ... \<lhs - rhs> | -- | R0 = \<lhs - rhs>, R1 = \<rhs> |
 | MUL | Retira dois valores da pilha, multiplica e empilha o resultado. Opera apenas em `NUMBER`.| ...\<lhs> \<rhs> | ... \<lhs * rhs> | -- | R0 = \<lhs * rhs>, R1 = \<rhs> |
 | DIV | Retira dois valores da pilha, divide e empilha o resultado. Opera apenas em `NUMBER`.| ...\<lhs> \<rhs> | ... \<lhs / rhs> | -- | R0 = \<lhs / rhs>, R1 = \<rhs> |
-| IDIV | Retira dois valores da pilha, realiza a divisão inteira e empilha o resultado e o resto. Opera apenas em `NUMBER`.| ...\<lhs> \<rhs> | ... \<resto> \<resultado> | -- | R0 = \<resultado>, R1 = \<resto> |
+| IDIV | Retira dois valores da pilha, realiza a divisão inteira e empilha o resultado e o resto. Opera apenas em `NUMBER`.| ...\<lhs> \<rhs> | ... \<resto> \<resultado> | -- | R0 = \<resultado>, R1 = \<resto>, R2 = \<lhs>, R3=\<rhs> |
 | POW | Retira dois valores da pilha, eleva o primeiro à potência definida pelo segundo e empilha o resultado. Opera apenas em `NUMBER`. | ...\<lhs> \<rhs> | ... \<lhs ** rhs> | -- | R0 = \<lhs ** rhs>, R1 = \<rhs> |
 | RAND | Empilha um valor randômico, do tipo _float_, no intervalo [0,1).| ... | ... \<value> | -- | R0 = \<value> |
 | TRUNC | Trunca o valor no topo da pilha para a sua parte inteira. Opera apenas em `NUMBER`. | ...\<float> | ... \<int> | -- | R0 = \<int> |
