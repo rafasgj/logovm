@@ -49,10 +49,10 @@ MAXSTACKSIZE = 256 * (2**20)  # 256MB elements stack size.
 class Flags:  # pylint: disable=too-few-public-methods
     """Flag mappings."""
 
-    PEN = 1
-    DRAW = 2
-    ERASE = 3
-    _UNUSED = 4
+    PEN = 0
+    DRAW = 1
+    ERASE = 2
+    _UNUSED = [3,4]
     EXC = 5
     VERR = 15
     MAXFLAG = VERR
@@ -61,7 +61,7 @@ class Flags:  # pylint: disable=too-few-public-methods
 def __get_flag_index(flag):
     """Ensure flag index is valid."""
     flag = int(flag)
-    if not 1 <= flag <= Flags.MAXFLAG:
+    if not 0 <= flag <= Flags.MAXFLAG:
         raise ValueError("Flag index must be in [1,{Flags.MAXFLAG}]")
     return flag
 
