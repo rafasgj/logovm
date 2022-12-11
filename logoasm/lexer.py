@@ -176,3 +176,19 @@ def t_error(tokenizer):
 def lexer():
     """Create a new lexer object."""
     return lex.lex()
+
+
+if __name__ == "__main__":
+    import sys
+    import re
+
+    the_lexer = lexer()
+    with (
+        # pylint: disable=unspecified-encoding
+        open(sys.argv[1], "rt")
+        if len(sys.argv) > 1
+        else sys.stdin
+    ) as source_file:
+        the_lexer.input("".join(source_file.readlines()))
+    for tok in the_lexer:
+        print(tok)
