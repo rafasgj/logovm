@@ -346,9 +346,9 @@ def p_flag_ops(p):  # noqa: D205, D400, D403, D415
     flag_ops : SET NUMBER
              | UNSET NUMBER
     """
-    logging.log(5, "FLAG: %s: %s", p[1], p[2].value)
+    logging.log(5, "FLAG: %s: %s", p[1], p[2])
     if not isinstance(p[2], int):
-        raise TypeError(f"Expected an integer value: {p[2].value}")
+        raise TypeError(f"Expected an integer value: {p[2]}")
     p[0] = f"{p[1]} {p[2]}"
 
 

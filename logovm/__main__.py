@@ -126,9 +126,12 @@ def main():
     try:
         start = parse_program(filename)
     except IllegalCharacter as illchar:
-        logging.exception(str(illchar))
+        # logging.exception(str(illchar))
+        print(f"Error: Not a LogoASM file: {filename}", file=sys.stderr)
     except UndefinedReference as unref:
         logging.exception(str(unref))
+    except FileNotFoundError as fnfe:
+        print(str(fnfe), file=sys.stderr)
     else:
         if start is None:
             return 2
