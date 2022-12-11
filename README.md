@@ -43,7 +43,7 @@ Alguns elementos importantes da linguagem são:
 
     * identificadores
         : Nomes de elementos definidos pela expressão regular
-          `[_a-zA-Z][_a-zA-Z0-9]\*`
+          `[_@a-zA-Z][_@a-zA-Z0-9]\*([.][[_@a-zA-Z][_@a-zA-Z0-9])\*`
 
     * Strings
         : Literais representando cadeias de caracteres, delimitadas por

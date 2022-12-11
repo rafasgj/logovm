@@ -115,7 +115,7 @@ def t_CODE(t):  # pylint: disable=invalid-name
     return t
 
 
-@TOKEN(r"[_@a-zA-Z][_@.a-zA-Z0-9]*")
+@TOKEN(r"[_@a-zA-Z][_@a-zA-Z0-9]*([.][_@a-zA-Z][_@a-zA-Z0-9]*)*")
 def t_ID(t):  # pylint: disable=invalid-name
     """Extract an identifier."""
     logging.log(5, "ID: '%s'", t.value)
