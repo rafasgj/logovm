@@ -86,7 +86,9 @@ def jump(target):
 
 def skip_next(value):
     def wrap_jump():
-        logging.debug("Skip next if %szero: R0 = %s", "" if value else "not ", reg[0])
+        logging.debug(
+            "Skip next if %szero: R0 = %s", "" if value else "not ", reg[0]
+        )
         if (reg[0] == 0) is value:
             pc_stack[-1] += 1
 

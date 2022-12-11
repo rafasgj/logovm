@@ -36,6 +36,7 @@ from logovm.errors import UndefinedReference
 parser_error = False  # pylint: disable=invalid-name
 expected = ".START"
 
+
 class ParserObject(object):  # pylint: disable=R0205, R0903
     """Provides an object with arbitrary attributes."""
 
@@ -214,6 +215,7 @@ def p_push_op_no_value(p):  # noqa: D205, D400, D403, D415
     )
     p[0] = " ".join([p[1], "$ERR"])
 
+
 def p_push_op_pushf(p):  # noqa: D205, D400, D403, D415
     """push_op : PUSHF"""
     p[0] = f"{p[1]}"
@@ -287,9 +289,7 @@ def p_jmp_target_label(p):  # noqa: D205, D400, D403, D415
     label = get_symbol(p[1])
     if label:
         if label["type"] != "LABEL":
-            raise Exception(
-                f"Unexpected Symbol Type:{p.lineno(1)}: '{p[1]}'"
-            )
+            raise Exception(f"Unexpected Symbol Type:{p.lineno(1)}: '{p[1]}'")
         increment_symbol_usage(p[1], p.lineno(1))
     else:
         add_symbol(p[1], "LABEL", usage=1)
@@ -367,7 +367,9 @@ def p_error(p):
     parser_error = True
     print("Expected: ", expected)
     if p:
-        logging.critical("Invalid token:%d: %s:'%s'", p.lineno, p.type, p.value)
+        logging.critical(
+            "Invalid token:%d: %s:'%s'", p.lineno, p.type, p.value
+        )
     else:
         logging.error("Syntax error at EOF.")
 
