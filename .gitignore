@@ -1,0 +1,15 @@
+# image files
+*.pgm
+*.png
+*.jpg
+
+# Pytthon build files
+/**/__pycache__/
+/build/
+/*.egg-info/
+
+# auto-generated and tool related files
+.coverage
+
+# Temporary files
+*.swp

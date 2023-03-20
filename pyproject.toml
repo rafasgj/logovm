@@ -1,0 +1,49 @@
+[project]
+name = "logovm"
+description = "A collection of tools to teach compiler design and implementation."
+version = "0.2.0"
+requires-python = ">=3.10"
+license = { file="COPYING" }
+authors = [
+  { name = "Rafael Guterres Jeffman", email = "rafasgj@gmail.com" },
+]
+
+keywords = [
+  "teaching",
+  "compiler",
+  "Logo",
+]
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Education",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+]
+
+[project.optional-dependencies]
+png = [ "pillow" ]
+jpg = [ "pillow" ]
+test = [ "pytest", "pytest-cov", "coverage", "tox" ]
+dev = [ "black", "pylint", "flake8", "pydocstyle", "logovm[test]" ]
+
+[project.scripts]
+logovm = "logovm.__main__:main"
+
+[tool.black]
+line-length = 79
+target-version = ['py310', 'py311']
+include = '\.pyi?$'
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+pythonpath = "."
+
+# pylint configuration
+[tool.pylint.'BASIC']
+max-line-length = 79
+max-attributes = 10
+good-names = [
+    "i", "j", "k",
+    "cp", "fp", "sz", "pc",
+    "x", "y", "dx", "dy", "sx", "sy", "x0", "y0", "x1", "y1"
+]
