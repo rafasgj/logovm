@@ -23,8 +23,10 @@ classifiers = [
 [project.optional-dependencies]
 png = [ "pillow" ]
 jpg = [ "pillow" ]
+graphic = [ "pillow" ]
 test = [ "pytest", "pytest-cov", "coverage", "tox" ]
-dev = [ "black", "pylint", "flake8", "pydocstyle", "logovm[test]" ]
+lint = [ "black", "pylint", "flake8", "pydocstyle" ]
+dev = [ "logovm[test,lint]" ]
 
 [project.scripts]
 logovm = "logovm.__main__:main"
