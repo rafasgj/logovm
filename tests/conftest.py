@@ -17,7 +17,7 @@
 
 """Tests for LogoVM example code."""
 
-import pytest
+import pytest  # pylint: disable=import-error
 
 from example_programs import gen_program, get_example_program_and_data
 

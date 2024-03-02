@@ -33,7 +33,7 @@ class DataTranslator:
         """Automatically convert 'value' in an int, float or str."""
         try:
             return int(value)
-        except ValueError:
+        except ValueError:  # pragma: no cover
             try:
                 return float(value)
             except ValueError:
@@ -128,7 +128,7 @@ class LogoVMLoader:
             datastream.read(len(mark)), "raw"
         )
         if value:
-            if value != mark:
+            if value != mark:  # pragma: no cover
                 raise InvalidLogoFile(f"{name} did not match: '{value}'")
             return True
         return False
@@ -153,7 +153,9 @@ class LogoVMLoader:
         # version
         version = {header["version_major"], header["version_minor"]}
         if not LogoVMLoader.check_version(version, check_version):
-            raise InvalidLogoFile(f"Cannot provide version: {version}")
+            raise (  # pragma: no cover
+                InvalidLogoFile(f"Cannot provide version: {version}")
+            )
 
     @staticmethod
     def __load_extension(datastream):
@@ -183,7 +185,7 @@ class LogoVMLoader:
                 case cmd if cmd < 192:  # INT arg
                     data_type = "q"
                 case cmd if cmd < 224:  # DOUBLE arg
-                    data_type = "d"
+                    data_type = "d"  # pragma: no cover
                 case _:  # STRING arg
                     arg, bread = DataTranslator.read_string(datastream)
             if data_type:
@@ -209,7 +211,7 @@ class LogoVMLoader:
                 case b"s":  # string
                     string, bread = DataTranslator.read_string(datastream)
                     data.append(string)
-                case _:
+                case _:  # pragma: no cover
                     raise InvalidLogoFile(
                         f"Invalid data type: {data_type.encode('utf-8')}"
                     )

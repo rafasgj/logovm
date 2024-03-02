@@ -24,7 +24,7 @@ import io
 from unittest.mock import patch, mock_open
 from textwrap import dedent
 
-import pytest
+import pytest  # pylint: disable=import-error
 
 from logovm.logoos import LogoOS
 from logovm.turtleos import TurtleOS

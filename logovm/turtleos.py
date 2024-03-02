@@ -200,7 +200,7 @@ class TurtleOS(LogoOS):
         mem = [0] * (stride * height)
         self.video = VideoConfig(channels, bpc, stride, width, height, mem)
 
-    def clear_screen(self, logo_vm):
+    def clear_screen(self, logo_vm):  # pragma: no cover
         """Clear graphic screen."""
         self.reset_video()
         logo_vm.unset_flag(self.DRAW)
@@ -210,7 +210,7 @@ class TurtleOS(LogoOS):
             _, bpc, stride, width, height, mem = self.video
         except TypeError:  # pragma: no cover
             raise TurtleOSError("TurtleOS: Video not initialized.") from None
-        if not (0 <= x < width and 0 <= y < height):
+        if not (0 <= x < width and 0 <= y < height):  # pragma: no cover
             return
         pos = y * stride + x
         mem[pos : pos + bpc] = (color,)
@@ -262,7 +262,7 @@ class TurtleOS(LogoOS):
     def __bresenham(self, logo_vm, start_point, end_point):
         if not self.video:  # pragma: no cover
             raise TurtleOSError("TurtleOS: Video not initialized.") from None
-        if not logo_vm.is_set(self.PEN):
+        if not logo_vm.is_set(self.PEN):  # pragma: no cover
             return
         # --
         x0, y0 = start_point

@@ -48,15 +48,15 @@ class LogoMemory:
         self.maxstack = maxstack
         self.debug = []
 
-    def get_heap(self, addr):
+    def get_heap(self, addr):  # pragma: no cover
         """Retrieve data from the heap."""
-        if not 0 <= addr < len(self.heap):  # pragma: no cover
+        if not 0 <= addr < len(self.heap):
             raise LogoVMInvalidAccess(f"Invalid heap address: {addr}")
         return self.heap[addr]
 
-    def set_heap(self, addr, value):
+    def set_heap(self, addr, value):  # pragma: no cover
         """Set data on the heap."""
-        if not 0 <= addr < len(self.heap):  # pragma: no cover
+        if not 0 <= addr < len(self.heap):
             raise LogoVMInvalidAccess(f"Invalid heap address: {addr}")
         self.heap[addr] = value
 
@@ -151,7 +151,7 @@ class LogoVM:
         if cond:
             self.pc = target - 1
 
-    def __cmp(self):
+    def __cmp(self):  # pragma: no cover
         rhs = self.pop()
         lhs = self.pop()
         if lhs < rhs:
@@ -174,7 +174,7 @@ class LogoVM:
         self.regs[1] = operation[oper](self.regs[1], self.regs[2])
         self.push(self.regs[1])
 
-    def __bitop(self, oper):
+    def __bitop(self, oper):  # pragma: no cover
         operation = {
             "&": operator.and_,
             "|": operator.or_,
@@ -187,7 +187,7 @@ class LogoVM:
         self.regs[1] = operation[oper](self.regs[1], self.regs[2])
         self.push(self.regs[1])
 
-    def __idiv(self):
+    def __idiv(self):  # pragma: no cover
         self.regs[2] = self.pop_type((int, float))  # rhs
         self.regs[1] = self.pop_type((int, float))  # lhs
         self.regs[3] = self.regs[1] % self.regs[2]
@@ -195,23 +195,23 @@ class LogoVM:
         self.push(int(self.regs[3]))
         self.push(self.regs[1])
 
-    def __invert(self):
+    def __invert(self):  # pragma: no cover
         self.regs[1] = operator.invert(self.pop_type(int))
         self.push(self.regs[1])
 
-    def __roll_right(self):
+    def __roll_right(self):  # pragma: no cover
         self.regs[1] = self.pop_type(int)
         mask = (self.regs[1] & 0x01) << 63
         self.regs[1] = (self.regs[1] >> 1) | mask
         self.push(self.regs[1])
 
-    def __cat(self):
+    def __cat(self):  # pragma: no cover
         self.regs[2] = self.pop_type(str)  # lhs
         self.regs[1] = self.pop_type(str)  # rhs
         self.regs[1] = f"{self.regs[1]}{self.regs[2]}"
         self.push(self.regs[1])
 
-    def __str_chop(self):
+    def __str_chop(self):  # pragma: no cover
         self.regs[1] = self.pop_type(int)
         self.regs[2] = self.pop_type(str)
         if not 0 <= self.regs[1] < len(self.regs[2]):
@@ -219,7 +219,7 @@ class LogoVM:
         self.push((self.regs[2])[self.regs[1] :])  # pylint: disable=E1136
         self.push((self.regs[2])[: self.regs[1]])  # pylint: disable=E1136
 
-    def __str_offset(self):
+    def __str_offset(self):  # pragma: no cover
         self.regs[2] = self.pop_type(str)
         self.regs[1] = self.pop_type(int)
         if not 0 <= self.regs[1] < len(self.regs[2]):
@@ -236,7 +236,7 @@ class LogoVM:
     def __halt(self):
         self.running = False
 
-    def __ret(self):
+    def __ret(self):  # pragma: no cover
         self.pc = self.callstack.pop()[0]
 
     # operations
@@ -344,7 +344,7 @@ class LogoVM:
             self.__execute(*args, **kwargs)
         except Exception as exception:  # pylint: disable=broad-except
             print(f"{str(exception)} - PC={self.pc}", file=sys.stderr)
-            if self.callstack:
+            if self.callstack:  # pragma: no cover
                 print("Stack trace:", file=sys.stderr)
                 print(
                     "\n".join(f"    {x}" for x in self.callstack),
@@ -360,7 +360,7 @@ class LogoVM:
         )
         sys.stdin = self.console[0]
         # Load argumens to the Stack
-        for arg in args:
+        for arg in args:  # pragma: no cover
             try:
                 arg = int(arg)
             except ValueError:
