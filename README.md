@@ -22,3 +22,33 @@ _turtle graphics_ is also provided.
 A specification of the LogoVM can be found on
 [docs/specs.md](docs/specs.md).
 
+
+Usage
+-----
+
+To run a program simply call `logovm <program>`.
+
+Check `logovm -h` for available options.
+
+
+Installation
+------------
+
+You may install the `logovm` package through `pip`:
+```
+pip install logovm
+```
+
+Some extra options are available:
+* `graphic`: add support for graphic output (using `pillow`)
+* `test`: add dependencies for running automated tests
+* `lint`: add dependencies to ensure minimum code quality
+* `dev`: an alias that include `lint` and `test`
+
+For example, when implementing a feature for LogoVM, you would use:
+```
+(virt_env) [repo/logovm] $ pip -e install .[dev]
+```
+
+It is strongly suggested that you use a Python virtual environment.
+
