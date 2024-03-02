@@ -1,6 +1,7 @@
 [project]
 name = "logovm"
 description = "A collection of tools to teach compiler design and implementation."
+readme = "README.md"
 version = "0.2.0"
 requires-python = ">=3.10"
 license = { file="COPYING" }
