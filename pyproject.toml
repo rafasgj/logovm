@@ -37,6 +37,10 @@ dev = [ "logovm[test,lint]" ]
 [project.scripts]
 logovm = "logovm.__main__:main"
 
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
 [tool.black]
 line-length = 79
 target-version = ['py310', 'py311', 'py312']
