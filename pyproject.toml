@@ -20,6 +20,11 @@ classifiers = [
   "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
 ]
 
+[project.urls]
+homepage = "https://github.com/rafasgj/logovm"
+repository = "https://github.com/rafasgj/logovm"
+issues = "https://github.com/rafasgj/logovm/issues"
+
 [project.optional-dependencies]
 png = [ "pillow" ]
 jpg = [ "pillow" ]
